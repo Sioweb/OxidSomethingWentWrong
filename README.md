@@ -10,6 +10,14 @@ Das Formular kann der Kunde benutzen, um dem Betreiber mitzuteilen, was passiert
 
 `composer require sioweb/oxid-somethingwentwrong`
 
+## CSS
+
+Das CSS muss extra eingebunden werden, da das Formular auf der Startseite sonst nicht gut aussieht. Das CSS kann entweder per Smarty-Tag eingebunden werden, oder der Code aus der CSS-Datei wird einfach im Theme in eine vorhandene CSS-Datei kopiert:
+
+```
+[{oxstyle include=$oViewConf->getModuleUrl('SiowebSomethingWentWrong',"out/css/style.css")}]
+```
+
 ## Formbuilder
 
 Das Modul installiert automatisch den [Formbuilder](https://github.com/Sioweb/OxidFormBuilder). Mit diesem Modul können Sie das Formular nach belieben individualisieren.
