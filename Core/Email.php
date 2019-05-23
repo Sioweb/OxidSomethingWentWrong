@@ -36,7 +36,11 @@ class Email extends Email_parent
         // create messages
         $smarty = $this->_getSmarty();
 
-        $this->setViewData('SERVER', $_SERVER);
+        $this->setViewData('SERVER', [
+            'HTTP_HOST' => $_SERVER['HTTP_HOST'],
+            'REQUEST_URI' => $_SERVER['REQUEST_URI'],
+            'QUERY_STRING' => $_SERVER['QUERY_STRING']
+        ]);
         $this->setViewData('USER', $this->getActiveUser());
         $this->setViewData('oxcmp_basket', Registry::getSession()->getBasket());
 
