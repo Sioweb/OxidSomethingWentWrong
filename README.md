@@ -1,4 +1,4 @@
-# Something went wrong
+# Something went wrong (Für Oxid 6)
 
 Die wenigsten Betreiber einer Webseite oder eines Onlineshops nutzen Monitoring. Dabei ist es essentiell wichtig zu wissen, ob der Shop jederzeit erreichbar ist und wann ein Kunde ein Fehler erhält.
 
