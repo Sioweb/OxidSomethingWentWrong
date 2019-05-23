@@ -53,7 +53,11 @@ class Email extends Email_parent
 
         $this->setSubject($this->getConfig()->getConfigParam('swwFeedbackSubject'));
 
-        $this->setRecipient($shop->oxshops__oxowneremail->value, $language->translateString("order"));
+        $Receiver = $this->getConfig()->getConfigParam('swwFeedbackReceiver');
+        if(empty($Receiver)) {
+            $Receiver = $shop->oxshops__oxowneremail->value;
+        }
+        $this->setRecipient($Receiver, $language->translateString("order"));
 
         $result = $this->send();
 

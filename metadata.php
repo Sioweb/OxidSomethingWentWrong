@@ -45,5 +45,6 @@ $aModule = [
     'settings' => [
         ['group' => 'sww_feedback_settings', 'name' => 'swwFeedbackSubject', 'type' => 'str', 'value' => 'Feedback Oxid Shop'],
         ['group' => 'sww_feedback_settings', 'name' => 'swwFeedbackTemplate', 'type' => 'str', 'value' => 'email/somethingwentwrong/error.tpl'],
+        ['group' => 'sww_feedback_settings', 'name' => 'swwFeedbackReceiver', 'type' => 'str', 'value' => ''],
     ],
 ];
