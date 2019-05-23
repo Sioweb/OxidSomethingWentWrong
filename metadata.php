@@ -20,20 +20,30 @@ $aModule = [
     'author' => 'Sascha Weidner',
     'extend' => [
         \OxidEsales\Eshop\Application\Controller\StartController::class =>
-            Sioweb\Oxid\SomethingWentWrong\Controller\StartController::class
+            Sioweb\Oxid\SomethingWentWrong\Controller\StartController::class,
+        \OxidEsales\Eshop\Core\Email::class =>
+            Sioweb\Oxid\SomethingWentWrong\Core\Email::class,
+        \OxidEsales\Eshop\Core\ShopControl::class =>
+            Sioweb\Oxid\SomethingWentWrong\Core\ShopControl::class,
     ],
     'events' => [
         'onActivate' => '\Sioweb\Oxid\SomethingWentWrong\Core\Events::onActivate',
         'onDeactivate' => '\Sioweb\Oxid\SomethingWentWrong\Core\Events::onDeactivate',
     ],
-    // 'templates' => [
-    //     'formbuilder_shop_main.tpl' => 'sioweb/Backend/views/admin/tpl/form/formbuilder_shop_main.tpl',
-    // ],
-    // 'blocks' => [
-    //     [
-    //         'template' => 'headitem.tpl',
-    //         'block' => 'admin_headitem_inccss',
-    //         'file' => 'admin_headitem_inccss.tpl',
-    //     ],
-    // ]
+    'templates' => [
+        'email/somethingwentwrong/error.tpl' => 'sioweb/SomethingWentWrong/views/tpl/email/somethingwentwrong/error.tpl',
+        'email/formbuilder/fehler-feedback.tpl' => 'sioweb/SomethingWentWrong/views/tpl/email/formbuilder/fehler-feedback.tpl',
+        'email/formbuilder/customer/fehler-feedback.tpl' => 'sioweb/SomethingWentWrong/views/tpl/email/formbuilder/customer/fehler-feedback.tpl',
+    ],
+    'blocks' => [
+        [
+            'template' => 'layout/page.tpl',
+            'block' => 'layout_header',
+            'file' => 'views/blocks/layout_header.tpl',
+        ],
+    ],
+    'settings' => [
+        ['group' => 'sww_feedback_settings', 'name' => 'swwFeedbackSubject', 'type' => 'str', 'value' => 'Feedback Oxid Shop'],
+        ['group' => 'sww_feedback_settings', 'name' => 'swwFeedbackTemplate', 'type' => 'str', 'value' => 'email/somethingwentwrong/error.tpl'],
+    ],
 ];
