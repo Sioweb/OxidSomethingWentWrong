@@ -12,37 +12,28 @@ class ShopControl extends ShopControl_parent
         parent::__construct();
     }
 
-    // public function start($controllerKey = null, $function = null, $parameters = null, $viewsChain = null)
-    // {
-    //     parent::start($controllerKey, $function, $parameters, $viewsChain);
+    public function start($controllerKey = null, $function = null, $parameters = null, $viewsChain = null)
+    {
+        parent::start($controllerKey, $function, $parameters, $viewsChain);
         
-    //     $FeedbackTrace = Registry::getSession()->getVariable("swwFeedbackTrace");
-    //     echo "<pre>" . print_r(Registry::getSession()->getVariable("swwFeedbackTrace"), true) . "</pre>";
+        // $FeedbackTrace = Registry::getSession()->getVariable("swwFeedbackTrace");
+        // echo "<pre>" . print_r(Registry::getSession()->getVariable("swwFeedbackTrace"), true) . "</pre>";
 
-    //     if(empty($FeedbackTrace)) {
-    //         $FeedbackTrace = [];
-    //     }
+        if(empty($FeedbackTrace)) {
+            $FeedbackTrace = [];
+        }
 
-    //     if(count($FeedbackTrace) === 10) {
-    //         array_shift($FeedbackTrace);
-    //     }
+        if(count($FeedbackTrace) === 10) {
+            array_shift($FeedbackTrace);
+        }
 
-    //     $FeedbackTrace[time()] = [
-    //         'HTTP_HOST' => $_SERVER['HTTP_HOST'],
-    //         'REQUEST_URI' => $_SERVER['REQUEST_URI'],
-    //         'QUERY_STRING' => $_SERVER['QUERY_STRING']
-    //     ];
+        $FeedbackTrace[time()] = [
+            'HTTP_HOST' => $_SERVER['HTTP_HOST'],
+            'REQUEST_URI' => $_SERVER['REQUEST_URI'],
+            'QUERY_STRING' => $_SERVER['QUERY_STRING']
+        ];
 
-    //     Registry::getSession()->setVariable("swwFeedbackTrace", $FeedbackTrace);
-    // }
-    
-public function start($controllerKey = null, $function = null, $parameters = null, $viewsChain = null)
-{
-    parent::start($controllerKey, $function, $parameters, $viewsChain);
-    
-    echo "<pre>" . print_r(Registry::getSession()->getVariable("swwFeedbackTrace"), true) . "</pre>";
-
-    Registry::getSession()->setVariable("swwFeedbackTrace", [1,2,3]);
-}
+        Registry::getSession()->setVariable("swwFeedbackTrace", $FeedbackTrace);
+    }
 
 }
