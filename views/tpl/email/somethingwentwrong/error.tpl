@@ -70,3 +70,18 @@
     [{/foreach}]
 </table>
 </div>
+
+<h3>Server-Historie:</h3>
+
+[{foreach from=$SERVER_HISTORY item=history}]
+<div style="padding-top:10px;padding-left:10px;padding-right:10px;padding-bottom:10px;background:#EEEEEE;">
+    <h4>[{$history.TIMESTAMP|date_format:"%d.%m.%Y, %H:%M:%S"}]</h4>
+    <table width="100%" cellspacing="0" cellpadding="0" border="0" style="border-collapse:collapse;">
+        [{foreach from=$history key=key item=value}]
+        <tr>
+            <td height="25" style="border-bottom:1px solid #999999;" width="150">[{$key}]:&nbsp;</td><td style="border-bottom:1px solid #999999;">[{$value}]&nbsp;</td>
+        </tr>
+        [{/foreach}]
+    </table>
+</div>
+[{/foreach}]

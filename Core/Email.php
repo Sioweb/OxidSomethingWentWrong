@@ -41,6 +41,8 @@ class Email extends Email_parent
             'REQUEST_URI' => $_SERVER['REQUEST_URI'],
             'QUERY_STRING' => $_SERVER['QUERY_STRING']
         ]);
+
+        $this->setViewData('SERVER_HISTORY', Registry::getSession()->getVariable("swwFeedbackTrace"));
         $this->setViewData('USER', $this->getActiveUser());
         $this->setViewData('oxcmp_basket', Registry::getSession()->getBasket());
 
