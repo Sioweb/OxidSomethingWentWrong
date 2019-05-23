@@ -35,5 +35,3 @@ Das Modul installiert automatisch den [Formbuilder](https://github.com/Sioweb/Ox
 Gerne freue ich mich über ein kleines Danke via [Amazon Wunschliste](https://www.amazon.de/hz/wishlist/ls/3IW6TE09RDGV2/ref=nav_wishlist_lists_1?_encoding=UTF8&type=wishlist).
 
 Du kannst Amazon nicht leiden? Kein Problem, ich freue mich auch über [Likes](https://www.facebook.com/sioweb) und [positive Bewertungen](https://www.google.de/search?q=Sioweb).
-
-Du kannst Amazon nicht leiden? Kein Problem, ich freue mich auch über Likes und positive Bewertungen.
