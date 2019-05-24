@@ -41,12 +41,24 @@ class ShopControl extends ShopControl_parent
                     'HTTP_HOST' => $_SERVER['HTTP_HOST'],
                     'REQUEST_URI' => $_SERVER['REQUEST_URI'],
                     'QUERY_STRING' => $_SERVER['QUERY_STRING'],
-                    'TIMESTAMP' => $TimeStamp
+                    'TIMESTAMP' => $TimeStamp,
+                    'PORT' => $_SERVER['SERVER_PORT'],
+                    'ADDR' => $this->anonymize($_SERVER['SERVER_ADDR']),
+                    'USR' => $this->anonymize($_SERVER['REMOTE_ADDR']),
+                    'FILE' => $_SERVER['PHP_SELF'],
+                    'SCRIPT' => $_SERVER['SCRIPT_NAME'],
+                    'AGENT' => $_SERVER['HTTP_USER_AGENT'],
+                    'POST' => http_build_query($_POST)
                 ];
                 Registry::getSession()->setVariable("swwFeedbackTrace", $FeedbackTrace);
             }
             
             parent::start($controllerKey, $function, $parameters, $viewsChain);
         }
+    }
+
+    private function anonymize($ip)
+    {
+        return implode('.', array_slice(explode('.', $ip), 0, -1)) . '...';
     }
 }

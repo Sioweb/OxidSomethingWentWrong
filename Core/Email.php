@@ -39,7 +39,14 @@ class Email extends Email_parent
         $this->setViewData('SERVER', [
             'HTTP_HOST' => $_SERVER['HTTP_HOST'],
             'REQUEST_URI' => $_SERVER['REQUEST_URI'],
-            'QUERY_STRING' => $_SERVER['QUERY_STRING']
+            'QUERY_STRING' => $_SERVER['QUERY_STRING'],
+            'PORT' => $_SERVER['SERVER_PORT'],
+            'ADDR' => $this->anonymize($_SERVER['SERVER_ADDR']),
+            'USR' => $this->anonymize($_SERVER['REMOTE_ADDR']),
+            'FILE' => $_SERVER['PHP_SELF'],
+            'SCRIPT' => $_SERVER['SCRIPT_NAME'],
+            'AGENT' => $_SERVER['HTTP_USER_AGENT'],
+            'POST' => http_build_query($_POST)
         ]);
 
         $this->setViewData('SERVER_HISTORY', Registry::getSession()->getVariable("swwFeedbackTrace"));
@@ -86,5 +93,10 @@ class Email extends Email_parent
     protected function excludeFields()
     {
         return ['oxpassword'=>0, 'oxpasssalt'=>0, 'oxrights'=>0];
+    }
+
+    private function anonymize($ip)
+    {
+        return implode('.', array_slice(explode('.', $ip), 0, -1)) . '...';
     }
 }

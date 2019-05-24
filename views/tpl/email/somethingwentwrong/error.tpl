@@ -57,8 +57,7 @@
 </table>
 </div>
 
-[{/if}]
-
+[{/if}][{*}]
 <h3>Server-Daten:</h3>
 
 <div style="padding-top:10px;padding-left:10px;padding-right:10px;padding-bottom:10px;background:#EEEEEE;">
@@ -69,7 +68,7 @@
     </tr>
     [{/foreach}]
 </table>
-</div>
+</div>[{*}]
 
 <h3>Server-Historie:</h3>
 
@@ -77,6 +76,14 @@
 <div style="padding-top:10px;padding-left:10px;padding-right:10px;padding-bottom:10px;background:#EEEEEE;">
     <h4>[{$history.TIMESTAMP|date_format:"%d.%m.%Y, %H:%M:%S"}]</h4>
     <table width="100%" cellspacing="0" cellpadding="0" border="0" style="border-collapse:collapse;">
+        <tr>
+            <td>
+                <a href="[{$history.HTTP_HOST}][{$history.REQUEST_URI}]">Initialer Aufruf</a>
+            </td>
+            <td>
+                <a href="[{$history.HTTP_HOST}]?[{$history.QUERY_STRING|ltrim:"&"|ltrim:"?"}]">Direkte weiterleitung</a>
+            </td>
+        </tr>
         [{foreach from=$history key=key item=value}]
         <tr>
             <td height="25" style="border-bottom:1px solid #999999;" width="150">[{$key}]:&nbsp;</td><td style="border-bottom:1px solid #999999;">[{$value}]&nbsp;</td>
