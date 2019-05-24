@@ -8,5 +8,6 @@ $aLang = array(
     'SHOP_MODULE_GROUP_sww_feedback_settings' => 'Feedback-Einstellungen',
     'SHOP_MODULE_swwFeedbackSubject' => 'E-Mail-Betreff für Shopbetreiber',
     'SHOP_MODULE_swwFeedbackTemplate' => 'Template für Feedback-E-Mail',
-    'SHOP_MODULE_swwFeedbackReceiver' => 'Empfänger für Fehlerberichte'
+    'SHOP_MODULE_swwFeedbackReceiver' => 'Empfänger für Fehlerberichte',
+    'SHOP_MODULE_swwFeedbackExclude' => 'User agents ausschließen'
 );

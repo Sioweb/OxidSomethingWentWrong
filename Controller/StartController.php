@@ -15,7 +15,10 @@ class StartController extends StartController_parent
 
     public function getFeedbackForm()
     {
-        if(!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest') {
+        if(
+            (!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest') ||
+            $this->isExcludet()
+        ) {
             return '';
         }
 
@@ -23,5 +26,20 @@ class StartController extends StartController_parent
         $Email = oxNew(Email::class);
         $Email->sendSww2Owner();
         return $Form->loadWithFields('27ff1f1a74c65f80d52147ec9a18d1c2');
+    }
+
+    protected function isExcludet()
+    {
+        $ExcludeUserAgents = $this->getConfig()->getConfigParam('swwFeedbackExclude');
+        if(empty($ExcludeUserAgents)) {
+            return false;
+        }
+        foreach($ExcludeUserAgents as $agent) {
+            if(preg_match('|' . str_replace(['|','\\'], ['\|','\\\\'], $agent) . '|is', $_SERVER['HTTP_USER_AGENT'])) {
+                return true;
+            }
+        }
+
+        return false;
     }
 }

@@ -15,8 +15,10 @@ class ShopControl extends ShopControl_parent
 
     public function start($controllerKey = null, $function = null, $parameters = null, $viewsChain = null)
     {
-        
-        if(!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest') {
+        if(
+            (!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest') ||
+            $this->isExcludet()
+        ) {
             parent::start($controllerKey, $function, $parameters, $viewsChain);
         } else {
             Registry::getConfig()->setConfigParam('blForceSessionStart', true);
@@ -60,5 +62,20 @@ class ShopControl extends ShopControl_parent
     private function anonymize($ip)
     {
         return implode('.', array_slice(explode('.', $ip), 0, -1)) . '...';
+    }
+
+    protected function isExcludet()
+    {
+        $ExcludeUserAgents = $this->getConfig()->getConfigParam('swwFeedbackExclude');
+        if(empty($ExcludeUserAgents)) {
+            return false;
+        }
+        foreach($ExcludeUserAgents as $agent) {
+            if(preg_match('|' . str_replace(['|','\\'], ['\|','\\\\'], $agent) . '|is', $_SERVER['HTTP_USER_AGENT'])) {
+                return true;
+            }
+        }
+
+        return false;
     }
 }
