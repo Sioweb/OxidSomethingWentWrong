@@ -8,7 +8,7 @@ Das Formular kann der Kunde benutzen, um dem Betreiber mitzuteilen, was passiert
 
 ## Kosten
 
-Das Modul darf nicht kostenfrei verwendet werden! Open Source ist nicht Free2Use!
+Das Modul darf is auf weiteres nicht kostenfrei verwendet werden! Open Source ist nicht Free2Use!
 
 ## Support/Fragen/Hilfe
 
