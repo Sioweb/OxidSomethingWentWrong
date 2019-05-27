@@ -48,7 +48,11 @@ $aModule = [
         ['group' => 'sww_feedback_settings', 'name' => 'swwFeedbackReceiver', 'type' => 'str', 'value' => ''],
         ['group' => 'sww_feedback_settings', 'name' => 'swwFeedbackExclude', 'type' => 'arr', 'value' => [
             'bingbot',
-            'googlebot'
+            'googlebot',
+            'SemrushBot',
+            'Cliqzbot',
+            'YandexBot',
+            'CCBot'
         ]],
     ],
 ];
