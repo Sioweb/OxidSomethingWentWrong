@@ -10,14 +10,19 @@ class StartController extends StartController_parent
 {
     public function somethingWentWrong()
     {
-        return (Registry::getConfig()->getRequestParameter('redirected') || Registry::getConfig()->getRequestParameter('redirect'));
+        return (
+            !Registry::getConfig()->getRequestParameter('fnc') &&
+            (Registry::getConfig()->getRequestParameter('redirected') || Registry::getConfig()->getRequestParameter('redirect'))
+        );
     }
 
     public function getFeedbackForm()
     {
         if(
-            (!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest') ||
-            $this->isExcludet()
+            Registry::getConfig()->getRequestParameter('fnc') && (
+                (!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest') ||
+                $this->isExcludet()
+            )
         ) {
             return '';
         }
