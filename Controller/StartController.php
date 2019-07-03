@@ -18,11 +18,12 @@ class StartController extends StartController_parent
 
     public function getFeedbackForm()
     {
+        $FeedbackTrace = Registry::getSession()->getVariable("swwFeedbackTrace");
         if(
-            Registry::getConfig()->getRequestParameter('fnc') && (
-                (!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest') ||
-                $this->isExcludet()
-            )
+            Registry::getConfig()->getRequestParameter('fnc') ||
+            (!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) === 'xmlhttprequest') ||
+            $this->isExcludet() ||
+            (empty($FeedbackTrace) || count($FeedbackTrace) <= 1)
         ) {
             return '';
         }
