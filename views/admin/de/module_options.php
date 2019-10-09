@@ -22,5 +22,5 @@ $oStaticUrlList = oxNew(ListModel::class);
 $oStaticUrlList->init('oxbase', 'oxseo');
 $oStaticUrlList->selectString($sQ, [0, 1]);
 foreach($oStaticUrlList as $key => $oItem) {
-    $aLang['SHOP_MODULE_swwNoFormAfterController_' . $key] = $oItem->oxseo__oxstdurl->getRawValue() . '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;' . $oItem->oxseo__oxseourl->getRawValue();
+    $aLang['SHOP_MODULE_swwNoFormAfterController_' . $oItem->oxseo__oxstdurl->getRawValue()] = $oItem->oxseo__oxstdurl->getRawValue() . '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;' . $oItem->oxseo__oxseourl->getRawValue();
 }

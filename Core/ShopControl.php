@@ -4,7 +4,7 @@ namespace Sioweb\Oxid\SomethingWentWrong\Core;
 
 use OxidEsales\Eshop\Core\Session;
 use OxidEsales\Eshop\Core\Registry;
-use OxidEsales\Eshop\Core\ShopControl AS BaseShopControll;;
+use OxidEsales\Eshop\Core\ShopControl AS BaseShopControll;
 
 class ShopControl extends ShopControl_parent
 {
@@ -25,6 +25,7 @@ class ShopControl extends ShopControl_parent
             Registry::getSession()->start();
             
             $FeedbackTrace = Registry::getSession()->getVariable("swwFeedbackTrace");
+            // Registry::getSession()->setVariable("swwFeedbackTrace", []);
     
             if(empty($FeedbackTrace)) {
                 $FeedbackTrace = [];
@@ -50,7 +51,9 @@ class ShopControl extends ShopControl_parent
                     'FILE' => $_SERVER['PHP_SELF'],
                     'SCRIPT' => $_SERVER['SCRIPT_NAME'],
                     'AGENT' => $_SERVER['HTTP_USER_AGENT'],
-                    'POST' => http_build_query($_POST)
+                    'POST' => http_build_query($_POST),
+                    'CONTROLLER' => Registry::getConfig()->getRequestParameter('cl'),
+                    'REQUEST_URL' => getRequestUrl()
                 ];
                 Registry::getSession()->setVariable("swwFeedbackTrace", $FeedbackTrace);
             }

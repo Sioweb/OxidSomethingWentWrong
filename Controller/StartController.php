@@ -10,7 +10,21 @@ class StartController extends StartController_parent
 {
     public function somethingWentWrong()
     {
+        $FeedbackTrace = Registry::getSession()->getVariable("swwFeedbackTrace");
+        $LastTraces = array_slice($FeedbackTrace, -2);
+        $NoFormAfterControllers = unserialize($this->getConfig()->getConfigParam('swwNoFormAfterController'));
+        
+        foreach($LastTraces as $Trace) {
+            foreach($NoFormAfterControllers as $Controller) {
+                if(preg_match('|\bcl=' . $Trace['CONTROLLER'] . '\b|is', $Controller)) {
+                    return false;
+                }
+            }
+        }
+
         return (
+            !empty($FeedbackTrace) &&
+            count($FeedbackTrace) > 1 &&
             !Registry::getConfig()->getRequestParameter('fnc') &&
             (Registry::getConfig()->getRequestParameter('redirected') || Registry::getConfig()->getRequestParameter('redirect'))
         );

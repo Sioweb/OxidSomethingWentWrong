@@ -12,6 +12,10 @@ $sQ = "SELECT oxstdurl, oxobjectid, oxseourl FROM oxseo WHERE oxtype='static' &&
 $oStaticUrlList = oxNew(ListModel::class);
 $oStaticUrlList->init('oxbase', 'oxseo');
 $oStaticUrlList->selectString($sQ, [0, 1]);
+$Constraints = [];
+foreach($oStaticUrlList as $key => $oItem) {
+    $Constraints[] = $oItem->oxseo__oxstdurl->getRawValue();
+}
 /**
  * Module information
  */
@@ -51,7 +55,7 @@ $aModule = [
         ['group' => 'sww_feedback_settings', 'name' => 'swwFeedbackSubject', 'type' => 'str', 'value' => 'Feedback Oxid Shop'],
         ['group' => 'sww_feedback_settings', 'name' => 'swwFeedbackTemplate', 'type' => 'str', 'value' => 'email/somethingwentwrong/error.tpl'],
         ['group' => 'sww_feedback_settings', 'name' => 'swwFeedbackReceiver', 'type' => 'str', 'value' => ''],
-        ['group' => 'sww_feedback_settings', 'name' => 'swwNoFormAfterController', 'type' => 'select', 'multiple' => true, 'value' => '', 'style' => 'width:400px;', 'constraints' => implode('|', array_keys($oStaticUrlList->aList))],
+        ['group' => 'sww_feedback_settings', 'name' => 'swwNoFormAfterController', 'type' => 'select', 'multiple' => true, 'value' => '', 'style' => 'width:400px;', 'constraints' => implode('|', $Constraints)],
         ['group' => 'sww_feedback_settings', 'name' => 'swwFeedbackExclude', 'type' => 'arr', 'value' => [
             'bingbot',
             'googlebot',
