@@ -13,15 +13,13 @@
   ],
   "extra": {
     "oxideshop": {
-      "blacklist-filter": [
-        "documentation/**/*.*"
-      ],
       "target-directory": "sioweb/SomethingWentWrong"
     }
   },
   "require": {
     "php": ">=7.0",
-    "cihaeuser/formbuilder": "*"
+    "cihaeuser/formbuilder": "*",
+    "sioweb/oxid-metadata-multi-select": "*"
   },
   "autoload": {
     "psr-4": {
