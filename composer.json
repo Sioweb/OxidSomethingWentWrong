@@ -1,29 +1,38 @@
 {
   "name": "sioweb/oxid-somethingwentwrong",
   "description": ".",
-  "type": "oxideshop-module",
-  "keywords": [
-    "oxid",
-    "modules",
-    "error handling"
-  ],
-  "homepage": "https://www.sioweb.com",
+  "type": "oxidkernel-module",
+  "version": "6.0.0",
+  "keywords": ["oxid","modules","error handling"],
+  "homepage": "https://github.com/Sioweb/OxidSomethingWentWrong",
   "license": [
     "GPL-3.0-only"
   ],
   "extra": {
     "oxideshop": {
+      "blacklist-filter": [
+        "documentation/**/*.*"
+      ],
+      "source-directory": "./src/Resources/oxid",
       "target-directory": "sioweb/SomethingWentWrong"
     }
   },
   "require": {
-    "php": ">=7.0",
+    "php": "^7.0",
     "cihaeuser/formbuilder": "*",
-    "sioweb/oxid-metadata-multi-select": "*"
+    "sioweb/oxid-metadata-multi-select": "*",
+    "sioweb/ccevent-git": "*",
+    "oxid-community/symfony-kernel": "*"
   },
   "autoload": {
     "psr-4": {
-      "Sioweb\\Oxid\\SomethingWentWrong\\": "../../../source/modules/sioweb/SomethingWentWrong/"
+      "Sioweb\\Oxid\\SomethingWentWrong\\": "src/"
     }
+  },
+  "scripts": {
+    "package-scripts": [
+      "@config.localhost==1",
+      "Sioweb\\CCEvent\\Git\\Composer\\Git::init --repository=https://github.com/Sioweb/OxidSomethingWentWrong"
+    ]
   }
 }
